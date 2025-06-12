@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎁 Claim Your Gift</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: linear-gradient(135deg, #1f1f1f, #3d3d3d);
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: #292929;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 25px;
+    }
+    button {
+      background: #ff5252;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #ff2e2e;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎁 Claim Your Gift Offer</h1>
+    <p>Select any gift below to unlock!</p>
+    
+    <div class="btn-group">
+      <button onclick="showAd()">🎁 Claim Now</button>
+      <button onclick="showAd()">🔥 Hot Offer</button>
+      <button onclick="showAd()">🎉 Surprise Gift</button>
+      <button onclick="showAd()">🤑 Win Cash</button>
+      <button onclick="showAd()">💎 Unlock Bonus</button>
+    </div>
+    
+    <div class="footer">Powered by Monetag | Telegram Mini App</div>
+  </div>
+
+  <!-- Monetag Ad Script -->
+  <script src="//libtl.com/sdk.js" data-zone="9441047" data-sdk="show_9441047"></script>
+
+  <script>
+    function showAd() {
+      if (typeof show_9441047 === 'function') {
+        show_9441047(); // Trigger Monetag ad
+      } else {
+        alert("Ad is not ready. Please try again shortly.");
+      }
+    }
+  </script>
+</body>
+  </html>
