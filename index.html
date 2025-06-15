@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎁  এডস দেখে ইনকাম করুন</title>
+  <title>🎁 ঘরে বসে এডস দেখে ইনকাম করুন</title>
   <style>
     * {
       margin: 0;
@@ -184,6 +184,8 @@
       letter-spacing: 2px;
       text-align: center;
       border: 1px dashed #529aff;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     
     .copy-btn {
@@ -345,31 +347,67 @@
         flex-direction: column;
       }
     }
+    
+    .telegram-icon {
+      width: 24px;
+      height: 24px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2328A8E9"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.140.141-.259.259-.374.261l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>') no-repeat center;
+      background-size: contain;
+    }
+    
+    .reward-info {
+      background: rgba(82, 255, 94, 0.1);
+      border-radius: 12px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: center;
+      border: 1px solid #52ff5e;
+    }
+    
+    .reward-title {
+      font-size: 18px;
+      color: #ffd452;
+      margin-bottom: 10px;
+    }
+    
+    .reward-details {
+      font-size: 14px;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🎁 ঘরে বসে এডস দেখে ইনকাম করুন</h1>
-    <p class="subtitle">Watch ads, refer friends, and withdraw your earnings!</p>
+    <p class="subtitle">প্রতি ৫০টি এডস দেখার জন্য পাবেন ১০ টাকা! bKash/Nagad-এ উত্তোলন করুন!</p>
+    
+    <div class="reward-info">
+      <div class="reward-title">🎉 নতুন রিওয়ার্ড সিস্টেম</div>
+      <div class="reward-details">
+        • প্রতিটি এড দেখলে পাবেন ৳০.৫০<br>
+        • প্রতি ৫০টি এডস দেখলে অতিরিক্ত ৳১০ বোনাস পাবেন<br>
+        • সর্বনিম্ন উত্তোলনযোগ্য টাকা: ৳১০০
+      </div>
+    </div>
     
     <div class="stats-container">
       <div class="stat-box">
-        <div class="stat-title">Total Earnings</div>
+        <div class="stat-title">মোট আয়</div>
         <div class="stat-value">৳<span id="balance">0</span></div>
       </div>
       <div class="stat-box">
-        <div class="stat-title">Ads Watched</div>
+        <div class="stat-title">দেখা এডস</div>
         <div class="stat-value"><span id="ads-count">0</span>/50</div>
       </div>
       <div class="stat-box">
-        <div class="stat-title">Referrals</div>
-        <div class="stat-value"><span id="referral-count">0</span></div>
+        <div class="stat-title">উত্তোলন</div>
+        <div class="stat-value"><span id="withdrawal-count">0</span></div>
       </div>
     </div>
     
     <div class="progress-container">
       <div class="progress-label">
-        <span>Next Reward: ৳10 at 50 ads</span>
+        <span>পরবর্তী বোনাস: ৳১০ (৫০টি এডসে)</span>
         <span><span id="progress-percent">0</span>%</span>
       </div>
       <div class="progress-bar">
@@ -378,46 +416,41 @@
     </div>
     
     <div class="btn-group">
-      <button onclick="showAd()">🎁 Claim Now</button>
-      <button onclick="showAd()">🔥 Hot Offer</button>
-      <button onclick="showAd()">🎉 Surprise Gift</button>
-      <button onclick="showAd()">🤑 Win Cash</button>
-      <button onclick="showAd()">💎 Unlock Bonus</button>
+      <button onclick="showAd()">🎁 এখনই দাবি করুন</button>
+      <button onclick="showAd()">🔥 হট অফার</button>
+      <button onclick="showAd()">🎉 স্পেশাল গিফট</button>
+      <button onclick="showAd()">🤑 ক্যাশ জিতুন</button>
+      <button onclick="showAd()">💎 বোনাস আনলক করুন</button>
     </div>
     
-    <button class="withdraw-btn" onclick="openWithdrawModal()">💸 Withdraw via bKash/Nagad</button>
+    <button class="withdraw-btn" onclick="openWithdrawModal()">💸 bKash/Nagad-এ উত্তোলন করুন</button>
     
     <div class="referral-container">
       <div class="referral-title">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-          <circle cx="9" cy="7" r="4"></circle>
-          <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-        </svg>
-        Refer Friends & Earn ৳1 Each
+        <div class="telegram-icon"></div>
+        সাপোর্ট ও আপডেটের জন্য টেলিগ্রামে যুক্ত হোন
       </div>
       <div class="referral-content">
-        <div class="referral-code" id="referral-code">EARN-5A9B</div>
-        <button class="copy-btn" onclick="copyReferralCode()">Copy</button>
+        <div class="referral-code" id="telegram-link">https://t.me/nahid6775_Bot</div>
+        <button class="copy-btn" onclick="copyTelegramLink()">কপি করুন</button>
       </div>
-      <div class="referral-note">Share your code with friends. When they sign up using your code, you get ৳1!</div>
+      <div class="referral-note">সাপোর্ট এবং আপডেটের জন্য আমাদের টেলিগ্রাম বট লিঙ্ক পেতে "কপি করুন" ক্লিক করুন</div>
     </div>
     
-    <div class="footer">Powered by It'z Nahid| Telegram Mini App</div>
+    <div class="footer">Powered by It'z Nahid | Telegram Mini App</div>
   </div>
   
   <!-- Withdraw Modal -->
   <div class="modal" id="withdraw-modal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h2 class="modal-title">Withdraw Earnings</h2>
+      <h2 class="modal-title">আয় উত্তোলন করুন</h2>
       
       <div class="payment-option" onclick="selectPayment('bkash')" id="bkash-option">
         <div class="payment-logo bkash">bK</div>
         <div>
           <div><strong>bKash</strong></div>
-          <div>Instant withdrawal to bKash wallet</div>
+          <div>তাত্ক্ষণিক উত্তোলন bKash ওয়ালেটে</div>
         </div>
       </div>
       
@@ -425,14 +458,14 @@
         <div class="payment-logo nagad">NG</div>
         <div>
           <div><strong>Nagad</strong></div>
-          <div>Instant withdrawal to Nagad wallet</div>
+          <div>তাত্ক্ষণিক উত্তোলন Nagad ওয়ালেটে</div>
         </div>
       </div>
       
-      <input type="tel" class="modal-input" id="mobile-number" placeholder="Enter mobile number" maxlength="11">
-      <input type="number" class="modal-input" id="amount" placeholder="Enter amount (৳)" min="10" max="1000">
+      <input type="tel" class="modal-input" id="mobile-number" placeholder="মোবাইল নম্বর দিন" maxlength="11">
+      <input type="number" class="modal-input" id="amount" placeholder="টাকার পরিমাণ দিন (৳)" min="100" max="1000">
       
-      <button class="modal-btn" onclick="processWithdrawal()">Confirm Withdrawal</button>
+      <button class="modal-btn" onclick="processWithdrawal()">উত্তোলন নিশ্চিত করুন</button>
     </div>
   </div>
   
@@ -447,8 +480,7 @@
     let userState = {
       balance: 0,
       adsWatched: 0,
-      referrals: 0,
-      referralCode: 'EARN-' + Math.random().toString(36).substr(2, 4).toUpperCase()
+      withdrawals: 0
     };
     
     // Selected payment method
@@ -476,8 +508,7 @@
     function updateUI() {
       document.getElementById('balance').textContent = userState.balance.toFixed(2);
       document.getElementById('ads-count').textContent = userState.adsWatched;
-      document.getElementById('referral-count').textContent = userState.referrals;
-      document.getElementById('referral-code').textContent = userState.referralCode;
+      document.getElementById('withdrawal-count').textContent = userState.withdrawals;
       
       // Update progress bar
       const progressPercent = Math.min(100, (userState.adsWatched / 50) * 100);
@@ -497,11 +528,15 @@
           // Reward ৳10 for every 50 ads
           if (userState.adsWatched % 50 === 0) {
             userState.balance += 10;
-            showNotification("🎉 Congratulations! You earned ৳10 for watching 50 ads!");
+            showNotification("🎉 অভিনন্দন! আপনি ৫০টি এডস দেখার জন্য ৳১০ পেলেন!");
+          } else {
+            // Small reward for each ad
+            userState.balance += 0.5;
           }
           
           saveState();
           updateUI();
+          showNotification("এডস দেখার জন্য ধন্যবাদ! আপনি পেলেন ৳০.৫০");
         }, 1000);
       } else {
         // Simulate ad watching in development
@@ -510,37 +545,40 @@
         // Reward ৳10 for every 50 ads
         if (userState.adsWatched % 50 === 0) {
           userState.balance += 10;
-          showNotification("🎉 Congratulations! You earned ৳10 for watching 50 ads!");
+          showNotification("🎉 অভিনন্দন! আপনি ৫০টি এডস দেখার জন্য ৳১০ পেলেন!");
+        } else {
+          // Small reward for each ad
+          userState.balance += 0.5;
         }
         
         saveState();
         updateUI();
-        showNotification("Ad watched successfully! Keep going to earn more!");
+        showNotification("এডস দেখার জন্য ধন্যবাদ! আপনি পেলেন ৳০.৫০");
       }
     }
     
-    // Copy referral code
-    function copyReferralCode() {
-      const code = userState.referralCode;
-      navigator.clipboard.writeText(code)
+    // Copy Telegram link
+    function copyTelegramLink() {
+      const telegramLink = "https://t.me/nahid6775_Bot";
+      navigator.clipboard.writeText(telegramLink)
         .then(() => {
-          showNotification("Referral code copied to clipboard! Share it with friends.");
+          showNotification("টেলিগ্রাম লিঙ্ক কপি করা হয়েছে: " + telegramLink);
         })
         .catch(err => {
           console.error('Failed to copy: ', err);
-          showNotification("Failed to copy code. Please try again.");
+          showNotification("লিঙ্ক কপি করতে ব্যর্থ হয়েছে। আবার চেষ্টা করুন।");
         });
     }
     
     // Open withdraw modal
     function openWithdrawModal() {
-      if (userState.balance < 10) {
-        showNotification("You need at least ৳10 to withdraw. Watch more ads!");
+      if (userState.balance < 100) {
+        showNotification("উত্তোলনের জন্য আপনার কমপক্ষে ৳১০০ প্রয়োজন। আরও এডস দেখুন!");
         return;
       }
       
       document.getElementById('withdraw-modal').style.display = 'flex';
-      document.getElementById('amount').value = userState.balance.toFixed(2);
+      document.getElementById('amount').value = userState.balance >= 100 ? 100 : userState.balance.toFixed(2);
     }
     
     // Close modal
@@ -573,28 +611,29 @@
       
       // Validation
       if (!selectedPayment) {
-        showNotification("Please select a payment method");
+        showNotification("দয়া করে একটি পেমেন্ট মেথড নির্বাচন করুন");
         return;
       }
       
       if (!mobileNumber || mobileNumber.length !== 11 || !mobileNumber.startsWith('01')) {
-        showNotification("Please enter a valid Bangladeshi mobile number");
+        showNotification("দয়া করে একটি বৈধ বাংলাদেশি মোবাইল নম্বর দিন");
         return;
       }
       
-      if (isNaN(amount) || amount < 10 || amount > userState.balance) {
-        showNotification("Invalid amount. Minimum is ৳10 and maximum is your balance");
+      if (isNaN(amount) || amount < 100 || amount > userState.balance) {
+        showNotification("অবৈধ টাকার পরিমাণ। সর্বনিম্ন ৳১০০ এবং সর্বোচ্চ আপনার ব্যালেন্স পর্যন্ত উত্তোলন করতে পারবেন");
         return;
       }
       
       // Process withdrawal (simulated)
       userState.balance -= amount;
+      userState.withdrawals++;
       saveState();
       updateUI();
       
       // Show success message
       const methodName = selectedPayment === 'bkash' ? 'bKash' : 'Nagad';
-      showNotification(`৳${amount.toFixed(2)} withdrawal to ${methodName} (${mobileNumber}) initiated!`);
+      showNotification(`৳${amount.toFixed(2)} ${methodName} (${mobileNumber}) তে উত্তোলনের জন্য প্রক্রিয়াধীন!`);
       
       // Close modal
       closeModal();
