@@ -374,18 +374,48 @@
       font-size: 14px;
       line-height: 1.5;
     }
+    
+    .bonus-container {
+      background: linear-gradient(135deg, #ff5252, #ff9a52);
+      border-radius: 12px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: center;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 82, 82, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 82, 82, 0); }
+    }
+    
+    .bonus-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .bonus-description {
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🎁 ঘরে বসে এডস দেখে ইনকাম করুন</h1>
-    <p class="subtitle">প্রতি ৫০টি এডস দেখার জন্য পাবেন ১০ টাকা! bKash/Nagad-এ উত্তোলন করুন!</p>
+    <p class="subtitle">প্রতি এডস দেখার জন্য পাবেন ১৫ পয়সা! ৫০০টি এডসে পাবেন ৫০ টাকা বোনাস!</p>
+    
+    <div class="bonus-container">
+      <div class="bonus-title">🔥 নতুন বোনাস অফার 🔥</div>
+      <div class="bonus-description">৫০০টি এডস দেখলে পাবেন ৫০ টাকা বোনাস!</div>
+    </div>
     
     <div class="reward-info">
-      <div class="reward-title">🎉 নতুন রিওয়ার্ড সিস্টেম</div>
+      <div class="reward-title">🎉 নতুন রিওয়ার্ড সিস্টেম</div>
       <div class="reward-details">
-        • প্রতিটি এড দেখলে পাবেন ৳০.৫০<br>
-        • প্রতি ৫০টি এডস দেখলে অতিরিক্ত ৳১০ বোনাস পাবেন<br>
+        • প্রতিটি এড দেখলে পাবেন ৳০.১৫<br>
+        • প্রতি ৫০০টি এডস দেখলে অতিরিক্ত ৳৫০ বোনাস পাবেন<br>
         • সর্বনিম্ন উত্তোলনযোগ্য টাকা: ৳১০০
       </div>
     </div>
@@ -397,7 +427,7 @@
       </div>
       <div class="stat-box">
         <div class="stat-title">দেখা এডস</div>
-        <div class="stat-value"><span id="ads-count">0</span>/50</div>
+        <div class="stat-value"><span id="ads-count">0</span>/500</div>
       </div>
       <div class="stat-box">
         <div class="stat-title">উত্তোলন</div>
@@ -407,7 +437,7 @@
     
     <div class="progress-container">
       <div class="progress-label">
-        <span>পরবর্তী বোনাস: ৳১০ (৫০টি এডসে)</span>
+        <span>পরবর্তী বোনাস: ৳৫০ (৫০০টি এডসে)</span>
         <span><span id="progress-percent">0</span>%</span>
       </div>
       <div class="progress-bar">
@@ -511,7 +541,7 @@
       document.getElementById('withdrawal-count').textContent = userState.withdrawals;
       
       // Update progress bar
-      const progressPercent = Math.min(100, (userState.adsWatched / 50) * 100);
+      const progressPercent = Math.min(100, (userState.adsWatched / 500) * 100);
       document.getElementById('progress-fill').style.width = progressPercent + '%';
       document.getElementById('progress-percent').textContent = Math.round(progressPercent);
     }
@@ -525,35 +555,35 @@
         setTimeout(() => {
           userState.adsWatched++;
           
-          // Reward ৳10 for every 50 ads
-          if (userState.adsWatched % 50 === 0) {
-            userState.balance += 10;
-            showNotification("🎉 অভিনন্দন! আপনি ৫০টি এডস দেখার জন্য ৳১০ পেলেন!");
+          // Reward ৳50 for every 500 ads
+          if (userState.adsWatched % 500 === 0) {
+            userState.balance += 50;
+            showNotification("🎉 অভিনন্দন! আপনি ৫০০টি এডস দেখার জন্য ৳৫০ বোনাস পেলেন!");
           } else {
             // Small reward for each ad
-            userState.balance += 0.5;
+            userState.balance += 0.15;
           }
           
           saveState();
           updateUI();
-          showNotification("এডস দেখার জন্য ধন্যবাদ! আপনি পেলেন ৳০.৫০");
+          showNotification("এডস দেখার জন্য ধন্যবাদ! আপনি পেলেন ৳০.১৫");
         }, 1000);
       } else {
         // Simulate ad watching in development
         userState.adsWatched++;
         
-        // Reward ৳10 for every 50 ads
-        if (userState.adsWatched % 50 === 0) {
-          userState.balance += 10;
-          showNotification("🎉 অভিনন্দন! আপনি ৫০টি এডস দেখার জন্য ৳১০ পেলেন!");
+        // Reward ৳50 for every 500 ads
+        if (userState.adsWatched % 500 === 0) {
+          userState.balance += 50;
+          showNotification("🎉 অভিনন্দন! আপনি ৫০০টি এডস দেখার জন্য ৳৫০ বোনাস পেলেন!");
         } else {
           // Small reward for each ad
-          userState.balance += 0.5;
+          userState.balance += 0.15;
         }
         
         saveState();
         updateUI();
-        showNotification("এডস দেখার জন্য ধন্যবাদ! আপনি পেলেন ৳০.৫০");
+        showNotification("এডস দেখার জন্য ধন্যবাদ! আপনি পেলেন ৳০.১৫");
       }
     }
     
@@ -653,5 +683,5 @@
     // Initialize the app when page loads
     window.onload = init;
   </script>
-</body>
-  </html>
+ </body>
+</html>
